@@ -5,15 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Commet extends Model
 {
     use HasFactory;
 
-
+    public function post(){
+        return $this->belongsTo(Post::class);
+    }
     public function owner(){
         return $this->belongsTo(User::class , 'user_id');
     }
-    public function comnet(){
-        return $this->hasMany(Commet::class);
-}
 }

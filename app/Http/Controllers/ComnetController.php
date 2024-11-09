@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\comnet;
+use App\Models\Commet;
 use Illuminate\Http\Request;
 
-class ComnetController extends Controller
+class CommetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class ComnetController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(comnet $comnet)
+    public function show(Commet $comnet)
     {
         //
     }
@@ -42,7 +42,7 @@ class ComnetController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(comnet $comnet)
+    public function edit(Commet $comnet)
     {
         //
     }
@@ -50,7 +50,7 @@ class ComnetController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, comnet $comnet)
+    public function update(Request $request, Commet $comnet)
     {
         //
     }
@@ -58,7 +58,7 @@ class ComnetController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(comnet $comnet)
+    public function destroy(Commet $comnet)
     {
         //
     }
