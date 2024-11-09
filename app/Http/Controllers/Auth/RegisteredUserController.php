@@ -41,7 +41,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
-            'image' => 'https://ui-avatars.com/api/?name='. urlencode($request->username),
+            'image' => 'https://ui-avatars.com/api/?name='. urlencode($request->name),
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
