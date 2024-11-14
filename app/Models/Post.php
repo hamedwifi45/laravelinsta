@@ -9,11 +9,11 @@ class Post extends Model
 {
     use HasFactory;
 
-
+    protected $fillable = ['description','image','slug','user_id'];
     public function owner(){
         return $this->belongsTo(User::class , 'user_id');
     }
     public function comnet(){
-        return $this->hasMany(Commet::class);
+        return $this->hasMany(Comnet::class);
 }
 }

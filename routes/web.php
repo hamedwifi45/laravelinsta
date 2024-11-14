@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\ComnetController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Comnet;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +29,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/p/create' , [PostController::class , 'create'])->name('create_post');
+    Route::post('/p/create' , [PostController::class , 'store'])->name('store_post');
+    Route::get('/p/{post:slug}',[PostController::class , 'show']);
+    Route::post('/p/{post:slug}/comnite' , [ComnetController::class , 'store'])->name('comnite_store');
 });
 
 require __DIR__.'/auth.php';

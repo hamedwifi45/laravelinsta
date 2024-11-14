@@ -23,6 +23,7 @@ class User extends Authenticatable
         'image',
         'email',
         'password',
+        'description'
     ];
 
     /**
@@ -48,6 +49,6 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
     public function commets(){
-        return $this->hasMany(Commet::class);
+        return $this->hasMany(Comnet::class);
     }
 }

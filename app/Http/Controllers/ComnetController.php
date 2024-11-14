@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Commet;
+use App\Models\Comnet;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
-class CommetController extends Controller
+class ComnetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,15 +27,22 @@ class CommetController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request , Post $post)
     {
-        //
+        $data = $request->validate([
+            'body' => 'required'
+        ]);
+        $post->comnet()->create([
+            'body' => $request['body'],
+            'user_id' => auth()->user()->id
+        ]);
+        return back();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Commet $comnet)
+    public function show(Comnet $comnet)
     {
         //
     }
@@ -42,7 +50,7 @@ class CommetController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Commet $comnet)
+    public function edit(Comnet $comnet)
     {
         //
     }
@@ -50,7 +58,7 @@ class CommetController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Commet $comnet)
+    public function update(Request $request, Comnet $comnet)
     {
         //
     }
@@ -58,7 +66,7 @@ class CommetController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Commet $comnet)
+    public function destroy(Comnet $comnet)
     {
         //
     }
