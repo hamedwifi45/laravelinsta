@@ -8,6 +8,16 @@
     .card{
         @apply flex flex-col bg-gray-100 my-4 rounded-xl border border-blue-600;
     }
+
+    .card-head{
+        @apply flex flex-row items-center p-5;
+    }
+    /* .card-body{
+
+    } */
+    .card-footer{
+        @apply border-t border-t-gray-200 p-3 mt-5;
+    }
 }
 
 @layer utilities{

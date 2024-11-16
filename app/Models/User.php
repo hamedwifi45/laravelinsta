@@ -51,4 +51,7 @@ class User extends Authenticatable
     public function commets(){
         return $this->hasMany(Comnet::class);
     }
+    public function sug_user(){
+        return User::whereNot('id',auth()->id())->get()->shuffle()->take(5);
+    }
 }

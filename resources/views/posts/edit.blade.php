@@ -1,6 +1,6 @@
 <x-app-layout>
 <div class="card m-10 p-10">
-    <h1 class="text-3xl mb-10">{{__('create a new post')}}</h1>
+    <h1 class="text-3xl mb-10">{{__('Update the post')}}</h1>
     {{--Errors--}}
     <div class="flex flex-col justify-center items-center w-full">
         @if($errors->any())
@@ -15,10 +15,11 @@
         @endif
     </div>
     {{--forms--}}
-    <form action="/p/create" method="post" class="w-full" enctype="multipart/form-data">
-    <x-create-edit-form/>
-    <x-primary-button class="mt-4">{{__("Create Post")}}</x-primary-button>        
-</form>
+    <form action="/p/{{$post->slug}}/update" method="post" class="w-full" enctype="multipart/form-data">
+        @method('PATCH')
+    <x-create-edit-form :post="$post"/>
+    <x-primary-button class="mt-4">{{__("Edit Post")}}</x-primary-button>
+        </form>
 </div>
 
 

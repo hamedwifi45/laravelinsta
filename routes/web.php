@@ -17,14 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/explore' , [PostController::class , 'explore'])->name('explore');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -33,6 +32,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/p/create' , [PostController::class , 'store'])->name('store_post');
     Route::get('/p/{post:slug}',[PostController::class , 'show']);
     Route::post('/p/{post:slug}/comnite' , [ComnetController::class , 'store'])->name('comnite_store');
+    Route::get('/p/{post:slug}/edit',[PostController::class , 'edit'])->name('edit_post');
+    Route::patch('/p/{post:slug}/update',[PostController::class,'update'])->name('update_post');
+    Route::delete("/p/{post:slug}/Delete" , [PostController::class , 'destroy']);
+    Route::get('/'  , [PostController::class , 'index'])->name("home_page");
 });
 
 require __DIR__.'/auth.php';

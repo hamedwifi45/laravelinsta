@@ -6,7 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -15,7 +15,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $sug_user = auth()->user()->sug_user() ;
+        $posts = Post::all();
+        return view('posts.index' , compact(['posts','sug_user']));
     }
 
     /**
@@ -58,7 +60,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit' , compact('post'));
     }
 
     /**
@@ -66,7 +68,18 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $data = $request->validate([
+            'description' => 'required',
+            'image' => ['nullable','mimes:jpg,png,gif,jpeg']
+        ]
+        );
+        if($request->has("image")){
+            $image = $request["image"]->store('posts' , "public");
+            $data["image"] = $image;
+        };
+        $post->update($data);
+        return redirect('/p/'.$post->slug);
+    
     }
 
     /**
@@ -74,6 +87,12 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        Storage::delete("public/" . $post->image);
+        $post->delete();
+        return redirect(url('home'));
+    }
+    public function explore(){
+        $posts = Post::whereRelation('owner' , 'privateaccont' , '=' , '0')->whereNot('user_id' , auth()->id())->simplePaginate(9);
+        return view('posts.explore' , compact('posts'));
     }
 }
