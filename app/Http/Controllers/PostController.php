@@ -87,7 +87,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        Storage::delete("public/" . $post->image);
+        Storage::delete($post->image);
         $post->delete();
         return redirect(url('home'));
     }

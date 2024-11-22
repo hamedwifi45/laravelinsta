@@ -3,6 +3,7 @@
 use App\Http\Controllers\ComnetController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Models\Comnet;
 use Illuminate\Support\Facades\Route;
 
@@ -22,9 +23,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+require __DIR__.'/auth.php';
 
 Route::get('/explore' , [PostController::class , 'explore'])->name('explore');
 Route::middleware('auth')->group(function () {
+    Route::patch('/{user:username}/update' , [UserController::class , 'update']);
+    Route::get('/{user:username}/edit' , [UserController::class , 'edit'])->name('edit_profile');
+    Route::get('/{user:username}', [UserController::class,'index'])->name('user_profile');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -38,4 +43,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/'  , [PostController::class , 'index'])->name("home_page");
 });
 
-require __DIR__.'/auth.php';
+

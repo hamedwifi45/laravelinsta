@@ -16,7 +16,7 @@
             <div class="flex flex-row text-sm bg-gray-600 rounded p-3">
                 <div class="mr-5">
                     <a href="/{{auth()->user()->username}}">
-                    <img src="{{auth()->user()->image}}" alt="{{auth()->user()->username}}" class="rounded-full border border-gray-600 w-12 h-12" srcset="">
+                    <img src="{{auth()->user()->image}}" alt="{{auth()->user()->username}}" class="rounded-full border border-gray-400 w-12 h-12" srcset="">
                     </a>
                 </div>
                 <div class="flex flex-col">
@@ -26,10 +26,10 @@
                 
             </div>
             <div class="mt-5">
-                <h3 class="text-gray-500 font-bold">{{__("suggest For You")}}</h3>
+                <h3 class="text-gray-100 font-bold">{{__("suggest For You")}}</h3>
                 <ul>
                     @foreach ($sug_user as $sg )
-                        <li class="flex flex-row my-5 text-sm justify-items-center  bg-gray-600 rounded p-3" >
+                        <li class="flex flex-row my-5 text-sm justify-items-center  bg-gray-200 rounded p-3" >
                             <div class="mr-5">
                                 <a href="/{{$sg->username}}">
                                 <img src="{{$sg->image}}" class="rounded-full border border-black w-9 h-9" alt="">
@@ -37,7 +37,7 @@
                             </div>
                             <div class="flex flex-col grow">
                                 <a href="/{{$sg->username}}" class="font-bold">{{$sg->username}}</a>
-                                <div class="text-gray-200 text-sm">{{$sg->name}}</div>
+                                <div class="text-gray-700 text-sm">{{$sg->name}}</div>
                             </div>
                         </li>
                     @endforeach

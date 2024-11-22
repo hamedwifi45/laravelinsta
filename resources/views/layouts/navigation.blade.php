@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" class="bg-white dark:bg-white border-b border-gray-100 dark:white">
     <!-- Primary Navigation Menu -->
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -6,12 +6,12 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home_page') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-800" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-gray-800">
                     <x-nav-link :href="route('home_page')" :active="request()->routeIs('home_page')">
                         {{ __('home_page') }}
                     </x-nav-link>
@@ -25,18 +25,18 @@
                         <div class="space-x-3 text-[1.6rem] mr-2 leading-5">
                             <a href="{{route('home_page')}}">
                                 {!! url()->current() == route('home_page')
-                                ? '<i class="bi bi-house-door-fill text-white"></i>'
+                                ? '<i class="bi bi-house-door-fill text-gray-700"></i>'
                                 : '<i class="bi bi-house-door-fill text-blue-700"></i>'!!}
                             </a>
                             <a href="{{route('explore')}}">
                                 {!! url()->current() == route('explore')
-                                ? '<i class="bi bi-compass text-white"></i>'
+                                ? '<i class="bi bi-compass text-gray-700"></i>'
                                 : '<i class="bi bi-compass text-blue-700"></i>'!!}
                             </a>
                             <a href="{{route('create_post')}}">
                                 {!! url()->current() == route('create_post')
-                                ? '<i class="bi bi-envelope-fill text-white"></i>'
-                                : '<i class="bi bi-envelope-fill text-blue-700"></i>'!!}
+                                ? '<i class="bi bi-send-plus text-gray-700"></i>'
+                                : '<i class="bi bi-send-plus text-blue-700"></i>'!!}
                             </a>
                         </div>
                     </div>
@@ -45,13 +45,13 @@
                     <x-slot name="trigger">
                         <div>
                             
-                            <img src="{{ Auth::user()->image}}"  class="h-9 w-9 rounded-full" alt="ارهابي جديد" srcset="https://academy.hsoub.com/uploads/monthly_2024_11/imported-photo-4351366.thumb.png.bb9ed9f0d4723a8d316faa93a3e73fae.png">
+                            <img src="{{ auth()->user()->image}}"  class="ml-3 h-9 w-9 rounded-full" alt="ارهابي جديد" srcset="https://academy.hsoub.com/uploads/monthly_2024_11/imported-photo-4351366.thumb.png.bb9ed9f0d4723a8d316faa93a3e73fae.png">
                         </div>
                         
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
+                        <x-dropdown-link :href="route('user_profile' , ['user' =>auth()->user()->username])">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
