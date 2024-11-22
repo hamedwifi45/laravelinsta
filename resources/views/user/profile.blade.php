@@ -5,7 +5,7 @@
     <div class="grid grid-cols-4 text-black">
         {{-- {{User Image}} --}}
         <div class="px-4 col-span-1 order-1">
-            <img src="{{ asset('storage/'.$user->image) }}" alt="{{$user->username}} {{__('profile_picture')}}"
+            <img src="{{ $user->image}}" alt="{{$user->username}} {{__('profile_picture')}}"
             class="rounded-full w-20 md:w-40 border border-neutral-200">
         </div>
         {{-- User Name and Button --}}

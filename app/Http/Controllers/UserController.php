@@ -25,13 +25,12 @@ class UserController extends Controller
         }
         if($data->has('image')){
             $path = $upupr->file('image')->store('users' , 'public');
-            $data['image'] = '/' . $path;
+            $data['image'] = asset('storage/'.$path);
         }
         $data['privateaccont'] = $upupr->has('noprivate');
         $user->update($data->toArray());
         session()->flash('success',__("Your profile has update"));
         return redirect()->route('user_profile' , $user);
-    
     
     }
     

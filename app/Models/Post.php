@@ -15,5 +15,11 @@ class Post extends Model
     }
     public function comnet(){
         return $this->hasMany(Comnet::class);
-}
+    }
+    public function likes(){
+        return $this->belongsToMany(User::class , 'likes');
+    }
+    public function liked(User $user){
+        return $this->likes()->where('user_id','=' , $user->id)->exists();
+    }
 }

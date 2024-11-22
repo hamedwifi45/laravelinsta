@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ComnetController;
+use App\Http\Controllers\likecontroller;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -41,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/p/{post:slug}/update',[PostController::class,'update'])->name('update_post');
     Route::delete("/p/{post:slug}/Delete" , [PostController::class , 'destroy']);
     Route::get('/'  , [PostController::class , 'index'])->name("home_page");
+    Route::get('/p/{post:slug}/like' , likecontroller::class );
 });
 
 

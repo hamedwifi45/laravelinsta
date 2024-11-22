@@ -56,4 +56,7 @@ class User extends Authenticatable
     public function sug_user(){
         return User::whereNot('id',auth()->id())->get()->shuffle()->take(5);
     }
+    public function likes(){
+        return $this->belongsToMany(Post::class , 'likes');
+    }
 }
