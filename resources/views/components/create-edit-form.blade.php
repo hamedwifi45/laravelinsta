@@ -8,9 +8,13 @@
 
 
 
-            <textarea name="description" 
-             class="mt-10 w-full border border-gray-200 rounded-xl"
-              placeholder="{{__('Write a description')}}"  rows="5">{{$post->description ?? ""}}</textarea>
-               
-    
+            @php
+    $description = $post->description ?? "";
+    $wrappedDescription = chunk_split($description, 50, "\n");
+@endphp
+
+<textarea name="description" 
+          class="mt-10 w-full border border-gray-200 rounded-xl"
+          placeholder="{{ __('Write a description') }}" 
+          rows="5">{{ $wrappedDescription }}</textarea>
 

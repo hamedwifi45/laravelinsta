@@ -6,15 +6,16 @@
     </div>
     <div class="card-body">
         <div class="max-h-[35rem] overflow-hidden">
-            <img src="{{ asset('storage/'.$post->image) }}" class="h-auto w-full object-cover" alt="{{$post->description}}">
+            {{--  --}}
+            <img src="{{ asset('storage/'.$post->image) }}" class="h-auto w-full object-cover" alt="{{-- {{$post->description}} --}}">
+        </div>
+        <div class="p-2 mt-3 font-medium">
+            {{$post->description}}
         </div>
         <div class="p-3">
             <a href="/p/{{$post->slug}}/like" class="block">
                 <i class="bi bi-heart{{$post->liked(auth()->user())? "-fill text-red-600" : ''}} text-2xl font-bold hover:text-blue-700 hover:shadow-lg hover:shadow-blue-800 transition-all ease-out mr-3"></i>
             </a>
-        </div>
-        <div class="p-2 font-medium">
-            {{$post->description}}
         </div>
         @if ($post->comnet()->count() > 0)
             <a href="/p/{{$post->slug}}" class="p-3 font-bold text-sm text-gray-500">{{__("view all". $post->comnet()->count()."comnet")}}</a>

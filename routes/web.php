@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::delete("/p/{post:slug}/Delete" , [PostController::class , 'destroy']);
     Route::get('/'  , [PostController::class , 'index'])->name("home_page");
     Route::get('/p/{post:slug}/like' , likecontroller::class );
+    Route::get('/{user:username}/follow' , [UserController::class , 'follow'])->name('follow_user');
+    Route::get('/{user:username}/unfollow' , [UserController::class , 'unfollow'])->name('unfollow_user');
 });
 
 

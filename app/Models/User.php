@@ -54,9 +54,38 @@ class User extends Authenticatable
         return $this->hasMany(Comnet::class);
     }
     public function sug_user(){
-        return User::whereNot('id',auth()->id())->get()->shuffle()->take(5);
+        $following = auth()->user()->following()->wherePivot('confirm' , true)->get();
+        return User::all()->diff($following)->except(auth()->id())->shuffle()->take(10); 
     }
     public function likes(){
         return $this->belongsToMany(Post::class , 'likes');
     }
+    public function following(){
+        return $this->belongsToMany(User::class , 'follows' , 'user_id' , 'following_user_id')->withTimestamps()->withPivot('confirm');
+    }
+    public function followers(){
+        return $this->belongsToMany(User::class , 'follows'  , 'following_user_id' , 'user_id')->withTimestamps()->withPivot('confirm');
+    }
+    public function follow(User $user){
+        if ($user->privateaccont) {
+            return $this->following()->attach($user );
+        }
+        else{
+            return $this->following()->attach($user , ['confirm' => true]);
+        }
+        
+    }
+    public function unfollow(User $user){
+        return $this->following()->detach($user);
+    }
+    public function ispending(User $user){
+        return $this->following()->where('following_user_id' , $user->id)->where('confirm' , false)->exists();
+    }   
+    public function isfollowers(User $user){
+        return $this->followers()->where('user_id' , $user->id)->where('confirm' , true)->exists();
+    }
+    public function isfollowing(User $user){
+        return $this->following()->where('following_user_id' , $user->id)->where('confirm' , true)->exists();
+    }
+
 }

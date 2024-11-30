@@ -34,7 +34,7 @@ class ComnetController extends Controller
         ]);
         $post->comnet()->create([
             'body' => $request['body'],
-            'user_id' => auth()->user()->id
+            'user_id' =>  auth()->id()
         ]);
         return back();
     }

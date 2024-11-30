@@ -36,9 +36,18 @@
                                 </a>
                             </div>
                             <div class="flex flex-col grow">
-                                <a href="/{{$sg->username}}" class="font-bold">{{$sg->username}}</a>
+                                <a href="/{{$sg->username}}" class="font-bold">{{$sg->username}}
+                                @if (auth()->user()->isfollowers($sg))
+                                    <span class="text-xs text-gray-500"> {{__('Follower')}}</span>
+                                @endif
+                                </a>
                                 <div class="text-gray-700 text-sm">{{$sg->name}}</div>
                             </div>
+                            @if (auth()->user()->ispending($sg))
+                                <span class="text-gray-600 text-xs font-bold">{{__('donkey')}}</span>
+                            @else
+                                <a href="/{{$sg->username}}/follow" class="text-blue-500 font-bold">{{__("follow")}}</a>
+                            @endif
                         </li>
                     @endforeach
                 </ul>

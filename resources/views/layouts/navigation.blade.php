@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home_page') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-800" />
+                        <x-application-logo class="block h-6 w-auto fill-current text-gray-800 dark:text-gray-800" />
                     </a>
                 </div>
 
@@ -45,7 +45,7 @@
                     <x-slot name="trigger">
                         <div>
                             
-                            <img src="{{ auth()->user()->image}}"  class="ml-3 h-9 w-9 rounded-full" alt="ارهابي جديد" srcset="https://academy.hsoub.com/uploads/monthly_2024_11/imported-photo-4351366.thumb.png.bb9ed9f0d4723a8d316faa93a3e73fae.png">
+                            <img src="{{ auth()->user()->image}}"  class="ml-3 h-9 w-9 rounded-full" alt="ارهابي جديد" srcset="">
                         </div>
                         
                     </x-slot>

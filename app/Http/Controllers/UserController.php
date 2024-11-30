@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index(User $user){
+        
         return view('user.profile' , compact('user'));
     }
     public function edit(User $user){
@@ -33,5 +34,14 @@ class UserController extends Controller
         return redirect()->route('user_profile' , $user);
     
     }
-    
+    public function follow(User $user)
+    {
+        auth()->user()->follow($user);
+        return back();
+    }
+    public function unfollow(User $user)
+    {
+        auth()->user()->unfollow($user);
+        return back();
+    }
 }

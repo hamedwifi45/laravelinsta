@@ -15,8 +15,10 @@ class PostController extends Controller
      */
     public function index()
     {
+    
+        $ids = auth()->user()->following()->wherePivot('confirm' , '=',true)->get()->pluck('id');
         $sug_user = auth()->user()->sug_user() ;
-        $posts = Post::all();
+        $posts = Post::whereIn('user_id' , $ids)->latest()->get();
         return view('posts.index' , compact(['posts','sug_user']));
     }
 
@@ -39,9 +41,10 @@ class PostController extends Controller
         ]
         );
         
-        
-        $images = $request['image']->store('posts' , 'public');
-        $data['image'] = $images;
+        if($request->has('image')){
+            $images = $request['image']->store('posts' , 'public');
+            $data['image'] = $images;
+            }
         $data['slug'] = Str::random(10);
         auth()->user()->posts()->create($data);
         return redirect()->back();
@@ -77,6 +80,7 @@ class PostController extends Controller
             $image = $request["image"]->store('posts' , "public");
             $data["image"] = $image;
         };
+        
         $post->update($data);
         return redirect('/p/'.$post->slug);
     
