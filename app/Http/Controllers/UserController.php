@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index(User $user){
-        
         return view('user.profile' , compact('user'));
     }
     public function edit(User $user){
+        // abort_if(auth()->id() != $user->id, 403 , "يعمي انت قاعد تدخل اماكن لناس غيرك ليش");
+        $this->authorize('edit-update-profile' , $user);
         return view('user.edit' , compact('user'));
     }
     public function update(User $user , UpdateUserProfileRequest $upupr){

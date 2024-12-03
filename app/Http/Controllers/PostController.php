@@ -71,6 +71,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $this->authorize('update' , $post);
         $data = $request->validate([
             'description' => 'required',
             'image' => ['nullable','mimes:jpg,png,gif,jpeg']
@@ -91,6 +92,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('delete', $post);
         Storage::delete($post->image);
         $post->delete();
         return redirect(url('home'));
