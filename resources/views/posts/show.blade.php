@@ -18,7 +18,7 @@
                 <a href="/{{$post->owner->username}}" class=" font-bold">{{$post->owner->username}}</a>
             </div>
             
-                @if ($post->owner->id == auth()->user()->id)
+                @can ('update' , $post)
                 <a href="/p/{{$post->slug}}/edit" class="rounded-full   text-blue-500"><i class="bi bi-pencil-square font-bold  text-xl "></i></a>
                 <form action="/p/{{$post->slug}}/Delete" method="post">
                     @csrf
@@ -27,7 +27,11 @@
                         <i class="bi bi-file-x-fill text-2xl text-red-600 ml-2 rounded-full  "></i>
                     </button>
                     </form>
-                @elseif (auth()->user()->isfollowing($post->owner))
+                @endcan
+                @cannot('update' , $post)
+                    
+                
+                @if (auth()->user()->isfollowing($post->owner))
                     <a href="/{{$post->owner->username}}/unfollow"
                         class="w-30 text-blue-400 text-sm font-bold px-3 text-center">
                     {{__("Unfollow")}}
@@ -38,7 +42,7 @@
                 {{__("Follow")}}
                 </a>
                 @endif
-                
+                @endcannot
                 
             </div>
         </div>
