@@ -26,11 +26,19 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 require __DIR__.'/auth.php';
 Route::get('/{user:username}', [UserController::class,'index'])->name('user_profile');
+<<<<<<< HEAD
 Route::get('/explore' , [PostController::class , 'explore'])->name('explore');
 Route::middleware('auth')->group(function () {
     Route::patch('/{user:username}/update' , [UserController::class , 'update']);
     Route::get('/{user:username}/edit' , [UserController::class , 'edit'])->name('edit_profile');
     
+=======
+
+Route::get('/p/explore' , [PostController::class , 'explore'])->name('explore');
+Route::middleware('auth')->group(function () {
+    Route::patch('/{user:username}/update' , [UserController::class , 'update']);
+    Route::get('/{user:username}/edit' , [UserController::class , 'edit'])->name('edit_profile');
+>>>>>>> 8c49fdd49b986a0b2b16dafa8d2500a7724ca479
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

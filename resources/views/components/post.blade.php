@@ -1,10 +1,14 @@
 <div class="card">
     <!-- Breathing in, I calm body and mind. Breathing out, I smile. - Thich Nhat Hanh -->
-    <div class="card-head">
+    <div class="card-head border-gray-300 border-b">
+        <br>
     <img src="{{$post->owner->image}}" class="h-9 w-9 mr-3 rounded-full" alt="" srcset="">
     <a href="/{{$post->owner->username}}" class=" font-bold">{{$post->owner->username}}</a>
+    <br>
     </div>
+    <br>
     <div class="card-body">
+        <br>
         <div class="max-h-[35rem] overflow-hidden">
             {{--  --}}
             <img src="{{ asset('storage/'.$post->image) }}" class="h-auto w-full object-cover" alt="{{-- {{$post->description}} --}}">

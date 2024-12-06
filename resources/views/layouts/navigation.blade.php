@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home_page') }}">
-                        <x-application-logo class="block h-6 w-auto fill-current text-gray-800 dark:text-gray-800" />
+                        <x-application-logo class="block h-5 w-auto fill-current  text-gray-800 dark:text-gray-800" />
                     </a>
                 </div>
 
@@ -114,10 +114,15 @@
             </div>
             
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                <x-responsive-nav-link :href="auth()->user()->username">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
-
+                <x-responsive-nav-link :href="route('home_page')">
+                    {{ __('Home') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('explore')">
+                    {{ __('explore') }}
+                </x-responsive-nav-link>
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
