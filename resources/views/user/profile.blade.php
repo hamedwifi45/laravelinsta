@@ -30,6 +30,21 @@
                 <a href="/{{$user->username}}/follow" class="w-30 bg-blue-400 text-white px-3 py-1 rounded text-center self-start">{{__("follow")}}</a>
             @endif
             @endauth
+<<<<<<< HEAD
+=======
+            @guest
+            <div class="grid grid-row-2 w-44">
+                <a href="/register"
+                    class="w-22 border text-sm  font-bold py-1 rounded-md text-black border-neutral-300 text-center">
+                    {{__('REFISTER')}}
+                </a>
+                <a href="/login"
+                    class="w-22 border text-sm  font-bold py-1 rounded-md text-black border-neutral-300 text-center">
+                    {{__('Login')}}
+                </a>
+            </div>
+            @endguest
+>>>>>>> 8c49fdd49b986a0b2b16dafa8d2500a7724ca479
         </div>
     {{-- User Info --}}
     <div class="text-md mt-8 px-4 col-span-3 col-start-1 order-3 md:col-start-2 md:order-4 md:mt-5">
