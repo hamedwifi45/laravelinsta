@@ -13,7 +13,7 @@
         {{-- Top --}}
         <div class="border-b-2">
             <div class="flex item-center p-5">
-                <img src="{{  $post->owner->image }}" alt="{{$post->owner->username}}" class="mr-5 h-10 w-10 rounded-full">
+                <img src="{{ $post->owner->image }}" alt="{{$post->owner->username}}" class="mr-5 h-10 w-10 rounded-full">
                 <div class="grow">
                 <a href="/{{$post->owner->username}}" class=" font-bold">{{$post->owner->username}}</a>
             </div>
@@ -74,7 +74,11 @@
                     </div>
                 @endforeach
             </div>
-            <div class="border-t-2 grow overflow-">
+            <div class="mx-5">
+                @livewire('like' , ['post' => $post])
+                @livewire('likedby', ['post'=>$post])
+            </div>
+                <div class="border-t-2 grow overflow-">
                 <form action="/p/{{$post->slug}}/comnite" method="post" >
                     @csrf
                     <div class="flex flex-row items-center">

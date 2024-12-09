@@ -15,13 +15,20 @@ class PostController extends Controller
      */
     public function index()
     {
+        $ids = auth()->user()->following()->wherePivot('confirm', '=', true)->get()->pluck('id');
+        $sug_user = auth()->user()->sug_user();
     
-        $ids = auth()->user()->following()->wherePivot('confirm' , '=',true)->get()->pluck('id');
-        $sug_user = auth()->user()->sug_user() ;
-        $posts = Post::whereIn('user_id' , $ids)->latest()->get();
-        return view('posts.index' , compact(['posts','sug_user']));
+        // اجلب المنشورات الجديدة (على سبيل المثال، آخر 3 منشورات)
+        $newPosts = Post::whereIn('user_id', $ids)->orderBy('created_at', 'desc')->take(7)->inRandomOrder()->get();
+    
+        // اجلب بقية المنشورات بشكل عشوائي
+        $otherPosts = Post::whereIn('user_id', $ids)->whereNotIn('id', $newPosts->pluck('id'))->inRandomOrder()->get();
+    
+        // دمج المنشورات الجديدة مع المنشورات العشوائية
+        $posts = $newPosts->merge($otherPosts);
+    
+        return view('posts.index', compact(['posts', 'sug_user']));
     }
-
     /**
      * Show the form for creating a new resource.
      */
