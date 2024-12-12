@@ -19,7 +19,7 @@ class PostController extends Controller
         $sug_user = auth()->user()->sug_user();
     
         // اجلب المنشورات الجديدة (على سبيل المثال، آخر 3 منشورات)
-        $newPosts = Post::whereIn('user_id', $ids)->orderBy('created_at', 'desc')->take(7)->inRandomOrder()->get();
+         $newPosts = Post::whereIn('user_id', $ids)->orderBy('created_at', 'desc')->take(10)->inRandomOrder()->get();
     
         // اجلب بقية المنشورات بشكل عشوائي
         $otherPosts = Post::whereIn('user_id', $ids)->whereNotIn('id', $newPosts->pluck('id'))->inRandomOrder()->get();
