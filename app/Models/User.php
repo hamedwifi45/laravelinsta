@@ -67,11 +67,11 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class , 'follows'  , 'following_user_id' , 'user_id')->withTimestamps()->withPivot('confirm');
     }
     public function togle_follow(User $user){
-        if($user->privateaccont){
-            return $this->following()->attach($user );
-        }
+        
         $this->following()->toggle($user);
-        $this->following()->updateExistingPivot($user,['confirm' => true]);
+        if(! $user->privateaccont){
+            return $this->following()->updateExistingPivot($user,['confirm' => true]);
+        }
     }
     public function follow(User $user){
         if ($user->privateaccont) {
