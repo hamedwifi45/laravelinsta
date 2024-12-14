@@ -71,12 +71,7 @@
                     {{$user->followers()->count() > 1 ? __('followers') : __("follower") }}
                 </span>
             </li>
-            <li class="flex flex-col md:flex-row text-center">
-                <div class="md:mr-1 font-bold md:font-normal">
-                    {{$user->following()->wherePivot('confirm' , true)->get()->count()}}
-                </div>
-                <button onclick="Livewire.dispatch('openModal' , {component:'followmodal'})">{{__('following ')}}</button>
-            </li>
+            @livewire('hollowing', ['userId' => $user->id])
         </ul>
     </div>
     </div>
