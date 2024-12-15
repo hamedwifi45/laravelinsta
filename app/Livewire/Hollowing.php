@@ -9,7 +9,8 @@ class Hollowing extends Component
 {
     public $userId;
     protected $user;
-    protected $listeners = ["unfollowingUser"=> 'getCountProperty'];
+    protected $listeners = ["unfollowingUser"=> 'getCountProperty',
+"followingUser" => 'getCountProperty'];
 
     public function getCountProperty(){
         $this->user = User::find($this->userId);

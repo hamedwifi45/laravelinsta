@@ -18,9 +18,16 @@
                 </div>
             </div>
             @auth
-                <div >
-                    <button wire:click='unfollow({{$follow->id}})' class="border border-gray-500 px-2 py-1 rounded">{{__('unfollow')}}</button>
-                </div>
+                @if ($follow->isfollowers())
+                    <div >
+                        <button wire:click='unfollow({{$follow->id}})' class="border border-gray-500 px-2 py-1 rounded">{{__('unfollow')}}</button>
+                    </div>
+                @elseif (!($follow->isfollowers()))
+                    <div >
+                        <button wire:click='follow({{$follow->id}})' class="border border-gray-500 px-2 py-1 rounded">{{__('follow')}}</button>
+                    </div>
+                @endif
+                
             @endauth
         </li>
             
