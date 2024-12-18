@@ -1,18 +1,9 @@
 <x-app-layout>
     <div class="flex flex-row max-w-6xl gap-8 mx-auto p-6 bg-gray-100">
         {{-- Left Side --}}
-        <div class="w-full lg:w-2/3">
-            @forelse ($posts as $post)
-                <x-post :post="$post" class="mb-6 shadow-lg rounded-lg bg-white p-4 transition-transform transform hover:scale-105"/>
-            @empty
-                <div class="max-w-2xl mx-auto text-center p-4 bg-white rounded-lg shadow">
-                    <p class="text-gray-600">{{ __("start following your friend and enjoy") }}</p>
-                </div>
-            @endforelse
-        </div>
-        
+@livewire('postslist')        
         {{-- Right Side --}}
-        <div class="hidden lg:flex lg:flex-col w-1/3 pt-4">
+        <div class="hidden lg:flex lg:flex-col w-1/7 pt-4">
             <div class="flex flex-row text-sm bg-blue-600 rounded p-3 mb-6">
                 <div class="mr-5">
                     <a href="/{{ auth()->user()->username }}">
@@ -27,30 +18,28 @@
             
             <div class="mt-5">
                 <h3 class="text-red-600 font-bold text-lg">{{ __("Suggestions For You") }}</h3>
-                <ul>
+                <ul class="bg-gray-50 p-5 rounded-lg shadow-lg">
                     @foreach ($sug_user as $sg)
-                        <li class="flex flex-row my-5 text-sm justify-between items-center bg-sky-100 rounded p-3 shadow hover:bg-sky-200 transition">
-                            <div class="flex items-center">
-                                <div class="mr-3">
+                        <li class="flex flex-col sm:flex-row my-4 text-md justify-between items-center bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg p-4 shadow-lg hover:scale-105 transition-transform duration-300">
+                            <div class="flex items-center w-full sm:w-auto">
+                                <div class="mr-4">
                                     <a href="/{{ $sg->username }}">
-                                        <img src="{{ $sg->image }}" class="rounded-full border border-black w-10 h-10" alt="">
+                                        <div class="relative w-12 h-12">
+                                            <img src="{{ $sg->image }}" class="rounded-full border-4 border-white shadow-lg absolute inset-0 w-full h-full object-cover" alt="">
+                                        </div>
                                     </a>
                                 </div>
                                 <div class="flex flex-col">
-                                    <a href="/{{ $sg->username }}" class="font-bold text-blue-800">{{ $sg->username }}
+                                    <a href="/{{ $sg->username }}" class="font-semibold text-white hover:underline">{{ $sg->username }}
                                         @if (auth()->user()->isfollowers($sg))
-                                            <span class="text-xs text-gray-500"> {{ __('Follower') }}</span>
+                                            <span class="text-xs text-yellow-300"> {{ __('متابع') }}</span>
                                         @endif
                                     </a>
-                                    <div class="text-gray-700 text-sm">{{ $sg->name }}</div>
+                                    <div class="text-gray-200 text-sm">{{ $sg->name }}</div>
                                 </div>
                             </div>
-                            <div>
-                                @if (auth()->user()->ispending($sg))
-                                    <span class="text-gray-600 text-xs font-bold">{{ __('Pending') }}</span>
-                                @else
-                                    <a href="/{{ $sg->username }}/follow" class="text-red-500 font-bold">{{ __("Follow") }}</a>
-                                @endif
+                            <div class="mt-2 sm:mt-0">
+                                @livewire('follow',['user_id'=>$sg->id])
                             </div>
                         </li>
                     @endforeach

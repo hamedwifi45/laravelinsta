@@ -1,4 +1,4 @@
-<div class="card shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
+<div class="card shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 w-full">
     <div class="card-head bg-gradient-to-r from-blue-500 to-purple-500 p-4 flex items-center">
         <img src="{{$post->owner->image}}" class="h-12 w-12 rounded-full border-2 border-white" alt="">
         <a href="/{{$post->owner->username}}" class="text-white font-bold text-lg ml-3 hover:underline">{{$post->owner->username}}</a>

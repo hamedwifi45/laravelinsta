@@ -7,7 +7,6 @@ use Livewire\Component;
 
 class Follow extends Component
 {
-    public $post;
     protected $user;
     public $user_id;
     public $follow_state;
@@ -19,8 +18,11 @@ class Follow extends Component
         $this->user = User::find($this->user_id);
         auth()->user()->togle_follow($this->user);
         $this->set_follow_state();
+        $this->dispatch('toglefollow');
+
     }
     protected function set_follow_state(){
+        $this->user = User::find($this->user_id);
         if(auth()->user()->ispending($this->user)){
             $this->follow_state = 'pending';}
         elseif(auth()->user()->isfollowing($this->user)){

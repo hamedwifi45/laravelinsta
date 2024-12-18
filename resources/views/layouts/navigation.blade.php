@@ -44,7 +44,24 @@
                                 ? '<i class="bi bi-send-plus text-gray-700"></i>'
                                 : '<i class="bi bi-send-plus text-blue-700"></i>'!!}
                             </a>
+                            
                         </div>
+                    </div>
+                    <div class="hidden mx-2 md:block">
+                        <x-dropdown align="right" width="96">
+                            <x-slot name="trigger">
+                                <button class="text-[1.6rem] ltr:mr-2 rtl:ml-2 leading-5">
+                                    <div class="relative">
+                                        <i class="bi bi-inbox-fill text-blue-700 hover:text-black"></i>
+                                        @livewire('pending-followers-count')
+                                    </div>
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                @livewire('pending-followers-list')
+                            </x-slot>
+                    </x-dropdown>
                     </div>
                 <div class="hidden md:block">
                 <x-dropdown align="right" width="48">

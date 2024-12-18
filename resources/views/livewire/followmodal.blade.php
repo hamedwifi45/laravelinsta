@@ -18,16 +18,16 @@
                 </div>
             </div>
             @auth
-                @if ($follow->isfollowers())
+                @if ($follow->isfollowers(auth()->user()))
                     <div >
                         <button wire:click='unfollow({{$follow->id}})' class="border border-gray-500 px-2 py-1 rounded">{{__('unfollow')}}</button>
                     </div>
-                @elseif (!($follow->isfollowers()))
+                @elseif (!($follow->isfollowers(auth()->user())))
                     <div >
-                        <button wire:click='follow({{$follow->id}})' class="border border-gray-500 px-2 py-1 rounded">{{__('follow')}}</button>
+                         <button wire:click='follow({{$follow->id}})' class="border border-gray-500 px-2 py-1 rounded">{{__('follow')}}</button>
                     </div>
                 @endif
-                
+
             @endauth
         </li>
             

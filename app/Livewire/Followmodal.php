@@ -30,6 +30,7 @@ class Followmodal extends ModalComponent
         $this->dispatch('unfollowingUser');
     }
     public function follow($user_id){
+        $this->user = auth()->user();
         $following_user = User::find($user_id);
         // $this->user = User::find($this->user_id);
         $this->user->follow($following_user);
