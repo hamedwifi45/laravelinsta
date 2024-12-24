@@ -39,11 +39,9 @@
                                 ? '<i class="bi bi-compass text-gray-700"></i>'
                                 : '<i class="bi bi-compass text-blue-700"></i>'!!}
                             </a>
-                            <a href="{{route('create_post')}}">
-                                {!! url()->current() == route('create_post')
-                                ? '<i class="bi bi-send-plus text-gray-700"></i>'
-                                : '<i class="bi bi-send-plus text-blue-700"></i>'!!}
-                            </a>
+                            <button onclick="Livewire.dispatch('openModal' , {component:'create-post-model'})">
+                                <i class="bi bi-send-plus text-blue-700"></i>
+                            </button>
                             
                         </div>
                     </div>

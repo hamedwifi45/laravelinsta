@@ -18,7 +18,7 @@
     <form action="/p/create" method="post" class="w-full" enctype="multipart/form-data">
     <x-create-edit-form/>
     <x-primary-button class="mt-4">{{__("Create Post")}}</x-primary-button>        
-</form>
+    </form>
 </div>
 
 

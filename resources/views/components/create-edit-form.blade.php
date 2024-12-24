@@ -18,3 +18,4 @@
           placeholder="{{ __('Write a description') }}" 
           rows="5">{{ $wrappedDescription }}</textarea>
 
+

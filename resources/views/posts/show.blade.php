@@ -22,7 +22,7 @@
                 <a href="/p/{{$post->slug}}/edit" class="rounded-full   text-blue-500"><i class="bi bi-pencil-square font-bold  text-xl "></i></a>
                 <form action="/p/{{$post->slug}}/Delete" method="post">
                     @csrf
-                    @method('DELETE')
+                 \   @method('DELETE')
                     <button type="submit" onclick="return confirm('are you sure?')">
                         <i class="bi bi-file-x-fill text-2xl text-red-600 ml-2 rounded-full  "></i>
                     </button>

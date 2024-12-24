@@ -26,6 +26,8 @@ class PostController extends Controller
     
         // دمج المنشورات الجديدة مع المنشورات العشوائية
         $posts = $newPosts->merge($otherPosts);
+
+        
     
         return view('posts.index', compact(['posts', 'sug_user']));
     }
