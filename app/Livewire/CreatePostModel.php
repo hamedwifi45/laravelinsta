@@ -12,9 +12,9 @@ class CreatePostModel extends ModalComponent
 {
     return '3xl';
 }
-    public function imagetemp(){
-        $image = $this->image->store('temp');
-        $this->dispatch('openModal' ,  component: 'image-filter', arguments:  (image: {{ $image }}) );
+    public function save_temp(){
+        $image =  $this->image->store('temp');
+        $this->dispatch('openModal', 'image-filter', ['image' => $image]);
     }
     public function render()
     {

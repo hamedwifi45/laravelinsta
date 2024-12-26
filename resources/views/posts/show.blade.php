@@ -6,9 +6,9 @@
         </div>
 
 
-        
 
-        {{-- Right --}} 
+
+        {{-- Right --}}
         <div class="flex w-full flex-col bg-white md:w-5/12">
         {{-- Top --}}
         <div class="border-b-2">
@@ -17,23 +17,24 @@
                 <div class="grow">
                 <a href="/{{$post->owner->username}}" class=" font-bold">{{$post->owner->username}}</a>
             </div>
-            
+
                 @can ('update' , $post)
-                <a href="/p/{{$post->slug}}/edit" class="rounded-full   text-blue-500"><i class="bi bi-pencil-square font-bold  text-xl "></i></a>
-                <form action="/p/{{$post->slug}}/Delete" method="post">
+{{--                <a href="/p/{{$post->slug}}/edit" class="rounded-full   text-blue-500"><i class="bi bi-pencil-square font-bold  text-xl "></i></a>--}}
+                    <button class="rounded-full   text-blue-500" onclick="Livewire.dispatch('openModal' ,{component: 'edit-post-modal' ,arguments:{post:{{$post}}}})"  ><i class="bi bi-pencil-square font-bold  text-xl "></i></button>
+                    <form action="/p/{{$post->slug}}/Delete" method="post">
                     @csrf
-                 \   @method('DELETE')
+                    @method('DELETE')
                     <button type="submit" onclick="return confirm('are you sure?')">
                         <i class="bi bi-file-x-fill text-2xl text-red-600 ml-2 rounded-full  "></i>
                     </button>
                     </form>
                 @endcan
                 @cannot('update' , $post)
-                    
-                
+
+
                 @livewire('follow' , ['post' => $post , 'user_id' => $post->owner->id])
                 @endcannot
-                
+
             </div>
         </div>
         {{-- Midlle --}}
@@ -58,7 +59,7 @@
                             </div>
                             <div class="mt-1 text-sm font-bold text-gray-400">
                                 {{$commite->created_at->diffForHumans(null,true,true)}}
-                                
+
                             </div>
                         </div>
                     </div>

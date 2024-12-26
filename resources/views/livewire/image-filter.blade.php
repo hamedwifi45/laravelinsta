@@ -1,7 +1,7 @@
 <div class="h-[50rem] lg:flex lg:flex-row overflow-y-auto">
     {{-- Left Side --}}
     <div class="flex h-1/2 lg:h-full items-center justify-center overflow-hidden bg-black lg:w-8/12">
-        <img class="h-full w-auto object-cover" src="{{ $filtered_image }}">
+        <img class="h-full w-auto object-cover" src="{{ 'storage/' . $filtered_image }}">
     </div>
 
     {{-- Right Side --}}
@@ -28,11 +28,11 @@
         </div>
         <div class="mt-3">
       <textarea name="description" id="description" cols="30" rows="10"
-                placeholder="{{ __('Write description...') }}" class="border-none w-full" wire:model="description"></textarea>
+                placeholder="{{ __('Write description...') }}" class="border-none w-full" wire:model.live.lazy="description"></textarea>
             @error('description')
                 <span class="text-sm text-red-500 py-5">{{ $message }}</span>
             @enderror
-            <x-button class="w-full justify-center" wire:click="publish">{{ __('Publish') }}</x-button>
+            <x-primary-button class="w-full justify-center" wire:click="publish">{{ __('Publish') }}</x-primary-button>
         </div>
     </div>
 </div>

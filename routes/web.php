@@ -36,7 +36,7 @@ Route::get('/explore' , [PostController::class , 'explore'])->name('explore');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/p/create' , [PostController::class , 'create'])->name('create_post');
     Route::post('/p/create' , [PostController::class , 'store'])->name('store_post');
-    Route::get('/p/{post:slug}',[PostController::class , 'show']);
+    Route::get('/p/{post:slug}',[PostController::class , 'show'])->name('show');
     Route::post('/p/{post:slug}/comnite' , [ComnetController::class , 'store'])->name('comnite_store');
     Route::get('/p/{post:slug}/edit',[PostController::class , 'edit'])->name('edit_post');
     Route::patch('/p/{post:slug}/update',[PostController::class,'update'])->name('update_post');
