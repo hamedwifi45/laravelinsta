@@ -12,7 +12,7 @@
         <div class="px-4 col-span-2 md:ml-0 flex flex-col order-2 md:col-span-3 ">
             <div class="flex items-center">
                 <div class="text-3xl mb-3 text-white hover:text-yellow-300 transition-colors duration-300 font-bold">{{$user->username}}</div>
-                
+
                 @auth
                     @if ($user->id == auth()->id())
                         <a href="/{{$user->username}}/edit"
@@ -20,7 +20,7 @@
                             {{__('Edit Profile')}}
                         </a>
                     @endif
-                    
+
                     <!-- زر المتابعة -->
                     @if(auth()->id() != $user->id)
                     <div class="mx-3 flex items-center">
@@ -33,7 +33,7 @@
                     </div>
                     @endif
                 @endauth
-                
+
                 @guest
                 <div class="grid grid-row-2 w-44">
                     <a href="/register"
@@ -60,7 +60,7 @@
                     {{$user->posts->count()}}
                 </div>
                 <span>
-                    {{$user->posts->count() > 1 ? 'posts' : "post"}}
+                    {{$user->posts->count() > 1 ? __('posts') : __("post")}}
                 </span>
             </li>
             <li class="flex flex-col md:flex-row text-center">
@@ -85,7 +85,7 @@
             @endforeach
         </div>
     @else
-        <div class="w-full text-center mt-20 text-white font-bold">
+        <div class="w-full text-center mt-20 text-black font-bold">
             @if ($user->privateaccont != false or auth()->id() != $user->id)
                 {{__("This account is private")}}
             @else

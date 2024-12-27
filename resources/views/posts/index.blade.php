@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="flex flex-row max-w-6xl gap-8 mx-auto p-6 bg-gray-100">
         {{-- Left Side --}}
-@livewire('postslist')        
+@livewire('postslist')
         {{-- Right Side --}}
         <div class="hidden lg:flex lg:flex-col w-1/7 pt-4">
             <div class="flex flex-row text-sm bg-blue-600 rounded p-3 mb-6">
@@ -15,12 +15,12 @@
                     <div class="text-sm text-blue-200">{{ auth()->user()->name }}</div>
                 </div>
             </div>
-            
+
             <div class="mt-5">
                 <h3 class="text-red-600 font-bold text-lg">{{ __("Suggestions For You") }}</h3>
                 <ul class="bg-gray-50 p-5 rounded-lg shadow-lg">
                     @foreach ($sug_user as $sg)
-                        <li class="flex flex-col sm:flex-row my-4 text-md justify-between items-center bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg p-4 shadow-lg hover:scale-105 transition-transform duration-300">
+                        <li class="flex flex-col sm:flex-row my-4 text-md justify-between items-center bg-gradient-to-r from-gray-900 to-gray-200 rounded-lg p-4 shadow-lg hover:scale-105 transition-transform duration-300">
                             <div class="flex items-center w-full sm:w-auto">
                                 <div class="mr-4">
                                     <a href="/{{ $sg->username }}">
